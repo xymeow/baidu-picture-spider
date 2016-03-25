@@ -8,7 +8,6 @@ import argparse
 
 parser = argparse.ArgumentParser(formatter_class=argparse.ArgumentDefaultsHelpFormatter)
 add_arg = parser.add_argument
-# add_arg('--url', default='http://image.baidu.com/search/flip?tn=baiduimage&ie=utf-8&word=%E5%96%B5&pn=0', help='url to download')
 add_arg('--keyword', '-kw', default='', help='输入要查询的关键词')
 add_arg('--download_page', '-dp', default=1, type=int, help='希望下载的页数，每页60张图')
 add_arg('--dir', default='./download_pic/', help='下载图片保存的位置')
