@@ -40,7 +40,9 @@ for dp in xrange(download_page):
 		sys.exit() 
 	ipdata = pattern.search(ipdata)
 	ipdata = ipdata.group(1)
-	imgData = json.loads(ipdata)
+	_regex = re.compile(r'\\(?![/u"])')  
+	ipdata = _regex.sub(r"\\\\", ipdata) 
+	imgData = json.loads(ipdata, strict=False)
 
 	if imgData['data']:
 		for obj in imgData['data']:
@@ -49,7 +51,6 @@ for dp in xrange(download_page):
 					data_img = urllib.urlopen(obj['objURL']).read()
 				except IOError:
 					print 'img is damaged.'
-					sys.exit()
 				else:
 					fPostfix = os.path.splitext(obj['objURL'])[1]
 					if fPostfix in valid_type:
@@ -68,3 +69,4 @@ for dp in xrange(download_page):
 					finally:
 						pass
 
+print 'all images have been downloaded!'
